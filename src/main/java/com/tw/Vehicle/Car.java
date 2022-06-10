@@ -1,5 +1,5 @@
 package com.tw.Vehicle;
 
-public class Car implements Vehicle{
+public class Car implements Parkable {
 
 }

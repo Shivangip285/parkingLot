@@ -1,4 +1,5 @@
 import CustomException.SpaceNotAvailable;
+import com.tw.Vehicle.Parkable;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -9,7 +10,7 @@ public class ParkingLotTest {
     @Test
     void shouldParkCarWhenSpaceIsAvailableInParkingLot() throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
         ParkingLot parkingLot=new ParkingLot(100,new HashSet<>());
-        com.tw.Vehicle.Vehicle car=new com.tw.Vehicle.Car();
+        Parkable car=new com.tw.Vehicle.Car();
         int slotsFilled=parkingLot.parkMatrix.size();
         parkingLot.parkVehicle(car);
 
@@ -18,9 +19,9 @@ public class ParkingLotTest {
     @Test
     void shouldParkCarWhenSpaceIsAvailable() throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
         ParkingLot parkingLot=new ParkingLot(1,new HashSet<>());
-        com.tw.Vehicle.Vehicle car=new com.tw.Vehicle.Car();
+        Parkable car=new com.tw.Vehicle.Car();
         parkingLot.parkVehicle(car);
-        com.tw.Vehicle.Vehicle car1=new com.tw.Vehicle.Car();
+        Parkable car1=new com.tw.Vehicle.Car();
 
         Throwable exception=assertThrows(SpaceNotAvailable.class, ()->{
             parkingLot.parkVehicle(car1);
@@ -29,7 +30,7 @@ public class ParkingLotTest {
     @Test
     void shouldParkCarrNotInParkingLot() throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
         ParkingLot parkingLot=new ParkingLot(1,new HashSet<>());
-        com.tw.Vehicle.Vehicle car=new com.tw.Vehicle.Car();
+        Parkable car=new com.tw.Vehicle.Car();
         parkingLot.parkVehicle(car);
 
         Throwable exception=assertThrows(CustomException.VehicleAlreadyExists.class, ()->{

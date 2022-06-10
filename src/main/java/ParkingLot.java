@@ -1,6 +1,6 @@
 import CustomException.SpaceNotAvailable;
 
-import java.util.*;
+import java.util.HashSet;
 public class ParkingLot {
     private int capacity;
 
