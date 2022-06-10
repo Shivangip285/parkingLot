@@ -1,18 +1,39 @@
+import CustomException.SpaceNotAvailable;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.HashSet;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
-    void shouldReturnIfCarIsParked()
-    {
-        ParkingLot parkingLot=new ParkingLot();
+    void shouldParkCarWhenSpaceIsAvailableInParkingLot() throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
+        ParkingLot parkingLot=new ParkingLot(100,new HashSet<>());
+        com.tw.Vehicle.Vehicle car=new com.tw.Vehicle.Car();
+        int slotsFilled=parkingLot.parkMatrix.size();
+        parkingLot.parkVehicle(car);
 
-        boolean carParked=parkingLot.Parked();
+        assertEquals(slotsFilled+1,parkingLot.parkMatrix.size());
+    }
+    @Test
+    void shouldParkCarWhenSpaceIsAvailable() throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
+        ParkingLot parkingLot=new ParkingLot(1,new HashSet<>());
+        com.tw.Vehicle.Vehicle car=new com.tw.Vehicle.Car();
+        parkingLot.parkVehicle(car);
+        com.tw.Vehicle.Vehicle car1=new com.tw.Vehicle.Car();
 
-        assertTrue(carParked);
+        Throwable exception=assertThrows(SpaceNotAvailable.class, ()->{
+            parkingLot.parkVehicle(car1);
+        });
+    }
+    @Test
+    void shouldParkCarrNotInParkingLot() throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
+        ParkingLot parkingLot=new ParkingLot(1,new HashSet<>());
+        com.tw.Vehicle.Vehicle car=new com.tw.Vehicle.Car();
+        parkingLot.parkVehicle(car);
+
+        Throwable exception=assertThrows(CustomException.VehicleAlreadyExists.class, ()->{
+            parkingLot.parkVehicle(car);
+        });
     }
 }

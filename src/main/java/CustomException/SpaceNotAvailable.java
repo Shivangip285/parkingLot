@@ -1,7 +1,7 @@
 package CustomException;
 
-public class SpaceNotAvailableException extends Exception {
-    public SpaceNotAvailableException(String s) {
+public class SpaceNotAvailable extends Exception {
+    public SpaceNotAvailable(String s) {
         super(s);
     }
 }

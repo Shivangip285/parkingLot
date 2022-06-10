@@ -1,2 +1,5 @@
-package com.tw.Vehicle;public class Car {
+package com.tw.Vehicle;
+
+public class Car implements Vehicle{
+
 }

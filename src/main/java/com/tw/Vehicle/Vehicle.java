@@ -1,2 +1,4 @@
-package PACKAGE_NAME;public interface Vehicle {
+package com.tw.Vehicle;
+
+public interface Vehicle {
 }
