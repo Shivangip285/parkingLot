@@ -1,4 +1,6 @@
 import CustomException.SpaceNotAvailable;
+import CustomException.VehicleAlreadyExists;
+import com.tw.Vehicle.Parkable;
 
 import java.util.HashSet;
 public class ParkingLot {
@@ -11,10 +13,10 @@ public class ParkingLot {
         this.parkMatrix=parkMatrix;
     }
 
-    public void parkVehicle(Object car) throws CustomException.VehicleAlreadyExists, SpaceNotAvailable {
+    public void parkVehicle(Parkable car) throws VehicleAlreadyExists, SpaceNotAvailable {
 
         if(parkMatrix.contains(car)) {
-            throw new CustomException.VehicleAlreadyExists("vehicle is already parked");
+            throw new VehicleAlreadyExists("vehicle is already parked");
         }
         if (parkMatrix.size()==capacity) {
             throw new SpaceNotAvailable("space is not available");
